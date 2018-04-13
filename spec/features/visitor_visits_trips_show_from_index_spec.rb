@@ -66,4 +66,15 @@ describe 'Visitor' do
 
     expect(page).to have_content("Longest hiking distance: 200")
   end
+  scenario 'A visitor sees shortest hiking distance' do
+    trip2 = Trip.create!(name: "Surfing", start_date: Date.strptime('8/29/2013', '%m/%d/%Y'), end_date: Date.strptime('9/10/2013', '%m/%d/%Y'))
+    trail1 = Trail.create!(length: 100, name: "best trail", address: "111 middle of forest")
+    trail2 = Trail.create!(length: 200, name: "ok trail", address: "222 middle of forest")
+    TripTrail.create!(trip_id: trip2.id, trail_id: trail1.id)
+    TripTrail.create!(trip_id: trip2.id, trail_id: trail2.id)
+
+    visit trip_path(trip2)
+
+    expect(page).to have_content("Shortest hiking distance: 100")
+  end
 end

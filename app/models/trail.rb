@@ -13,4 +13,8 @@ class Trail < ApplicationRecord
   def self.longest_hiking_distance
     maximum(:length)
   end
+
+  def self.shortest_hiking_distance
+    minimum(:length)
+  end
 end

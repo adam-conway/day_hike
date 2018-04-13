@@ -37,5 +37,15 @@ describe Trail, type: :model do
         expect(Trail.longest_hiking_distance).to eq(longest)
       end
     end
+    context 'shortest hiking distance' do
+      it 'returns the shortest hiking distance' do
+        trail1 = Trail.create!(length: 100, name: "best trail", address: "111 middle of forest")
+        trail2 = Trail.create!(length: 200, name: "ok trail", address: "222 middle of forest")
+
+        shortest = trail1.length
+
+        expect(Trail.shortest_hiking_distance).to eq(shortest)
+      end
+    end
   end
 end
