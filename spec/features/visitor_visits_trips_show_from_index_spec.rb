@@ -14,9 +14,9 @@ describe 'Visitor' do
     trail1 = Trail.create!(length: 100, name: "best trail", address: "111 middle of forest")
     trail2 = Trail.create!(length: 200, name: "ok trail", address: "222 middle of forest")
     trail3 = Trail.create!(length: 100, name: "bad trail", address: "333 middle of forest")
-    TripTrails.create!(trip_id: trip2.id, trail_id: trail1.id)
-    TripTrails.create!(trip_id: trip2.id, trail_id: trail2.id)
-    TripTrails.create!(trip_id: trip2.id, trail_id: trail3.id)
+    TripTrail.create!(trip_id: trip2.id, trail_id: trail1.id)
+    TripTrail.create!(trip_id: trip2.id, trail_id: trail2.id)
+    TripTrail.create!(trip_id: trip2.id, trail_id: trail3.id)
 
     visit trips_path
 
