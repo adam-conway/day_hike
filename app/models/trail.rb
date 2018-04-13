@@ -9,4 +9,8 @@ class Trail < ApplicationRecord
   def self.average_hiking_distance
     average(:length)
   end
+
+  def self.longest_hiking_distance
+    maximum(:length)
+  end
 end

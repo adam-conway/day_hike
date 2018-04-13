@@ -31,7 +31,7 @@ describe 'Visitor' do
     expect(page).to have_content(trail2.name)
     expect(page).to have_content(trail3.address)
   end
-  scenario 'A visitor see total hiking distance' do
+  scenario 'A visitor sees total hiking distance' do
     trip2 = Trip.create!(name: "Surfing", start_date: Date.strptime('8/29/2013', '%m/%d/%Y'), end_date: Date.strptime('9/10/2013', '%m/%d/%Y'))
     trail1 = Trail.create!(length: 100, name: "best trail", address: "111 middle of forest")
     trail2 = Trail.create!(length: 200, name: "ok trail", address: "222 middle of forest")
@@ -44,7 +44,7 @@ describe 'Visitor' do
 
     expect(page).to have_content("400")
   end
-  scenario 'A visitor see average hiking distance' do
+  scenario 'A visitor sees average hiking distance' do
     trip2 = Trip.create!(name: "Surfing", start_date: Date.strptime('8/29/2013', '%m/%d/%Y'), end_date: Date.strptime('9/10/2013', '%m/%d/%Y'))
     trail1 = Trail.create!(length: 100, name: "best trail", address: "111 middle of forest")
     trail2 = Trail.create!(length: 200, name: "ok trail", address: "222 middle of forest")
@@ -54,5 +54,16 @@ describe 'Visitor' do
     visit trip_path(trip2)
 
     expect(page).to have_content("150")
+  end
+  scenario 'A visitor sees longest hiking distance' do
+    trip2 = Trip.create!(name: "Surfing", start_date: Date.strptime('8/29/2013', '%m/%d/%Y'), end_date: Date.strptime('9/10/2013', '%m/%d/%Y'))
+    trail1 = Trail.create!(length: 100, name: "best trail", address: "111 middle of forest")
+    trail2 = Trail.create!(length: 200, name: "ok trail", address: "222 middle of forest")
+    TripTrail.create!(trip_id: trip2.id, trail_id: trail1.id)
+    TripTrail.create!(trip_id: trip2.id, trail_id: trail2.id)
+
+    visit trip_path(trip2)
+
+    expect(page).to have_content("Longest hiking distance: 200")
   end
 end

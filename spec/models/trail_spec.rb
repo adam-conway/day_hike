@@ -27,5 +27,15 @@ describe Trail, type: :model do
         expect(Trail.average_hiking_distance).to eq(average)
       end
     end
+    context 'longest hiking distance' do
+      it 'returns the longest hiking distance' do
+        trail1 = Trail.create!(length: 100, name: "best trail", address: "111 middle of forest")
+        trail2 = Trail.create!(length: 200, name: "ok trail", address: "222 middle of forest")
+
+        longest = trail2.length
+
+        expect(Trail.longest_hiking_distance).to eq(longest)
+      end
+    end
   end
 end
